@@ -1,9 +1,11 @@
 # 🔐 AI Model Security Fundamentals
-### A Cyber Queen Deep Dive — Post 1 of 8
+### A Cyber Queen Deep Dive — Model Security
 
 > **By Venicia Solomons ([@cyber.queen_](https://www.instagram.com/cyber.queen_/))**  
-> Cloud & AI Security Solutions Engineer · Microsoft MVP AI Security  
-> [Instagram](https://www.instagram.com/cyber.queen_/) · [LinkedIn](https://www.linkedin.com/in/veniciasolomons/) · [Podcast](#)
+> Cloud & AI Security · Microsoft
+>
+> Connect with me: 
+> [Instagram](https://www.instagram.com/cyber.queen_/) · [LinkedIn](https://www.linkedin.com/in/veniciasolomons/) · [YouTube](https://www.youtube.com/@cyber.queen_) · [TikTok](https://www.tiktok.com/@cyber.queen_) 
 
 ---
 
@@ -117,7 +119,7 @@ Weights are publicly available. Full access means full control and full risk.
 
 DeepSeek deserves its own callout. It delivers near-frontier performance at a fraction of the cost of closed models and its weights are publicly available. That makes it attractive for organisations watching their AI spend.
 
-But it comes from China, which introduces a geopolitical risk layer that most security teams are not factoring in. If your organisation is considering DeepSeek, your risk assessment needs to include data sovereignty, supply chain trust, and regulatory exposure — not just technical performance benchmarks.
+It comes from China, which introduces a geopolitical risk layer that security teams may not be factoring in. If your organisation is considering DeepSeek, your risk assessment needs to include data sovereignty, supply chain trust, and regulatory exposure — not just technical performance benchmarks.
 
 ---
 
@@ -339,13 +341,13 @@ That single question could protect you and your company. If nobody can answer it
 
 If this was useful, the best thing you can do is share it with someone who is learning AI security.
 
-> 🔐 **Follow the series on Instagram:** [@cyber.queen_](https://www.instagram.com/cyber.queen_/)  
+> 🔐 **Follow the series on Instagram:** [@cyber.queen_](https://www.instagram.com/cyber.queen_/)
+> 🎙️ **Subscribe on YouTube:** [Cyber Queen Podcast](https://www.youtube.com/@cyber.queen_)  
 > 💼 **Connect on LinkedIn:** [Venicia Solomons](https://www.linkedin.com/in/veniciasolomons/)  
-> 🎙️ **Listen to the Podcast:** [Cyber Queen Podcast](#)  
-> 🌐 **Join the Community:** [Skool](#)
-
+> 🎙️ **Listen to the Podcast:** [Cyber Queen Podcast](https://www.youtube.com/@cyber.queen_)
+> 🎙️ **Some Entertainment on TikTok:** [TikTok](https://www.tiktok.com/@cyber.queen_) 
 ---
 
 *Built with love for the security community. No gatekeeping. Just knowledge.*
 
-**Cyber Queen Enterprises © 2026**
+**Cyber Queen © 2026**

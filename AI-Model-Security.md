@@ -342,9 +342,13 @@ That single question could protect you and your company. If nobody can answer it
 If this was useful, the best thing you can do is share it with someone who is learning AI security.
 
 > 🔐 **Follow the series on Instagram:** [@cyber.queen_](https://www.instagram.com/cyber.queen_/)
+
 > 🎙️ **Subscribe on YouTube:** [Cyber Queen Podcast](https://www.youtube.com/@cyber.queen_)  
+
 > 💼 **Connect on LinkedIn:** [Venicia Solomons](https://www.linkedin.com/in/veniciasolomons/)  
+
 > 🎙️ **Listen to the Podcast:** [Cyber Queen Podcast](https://www.youtube.com/@cyber.queen_)
+
 > 🎙️ **Some Entertainment on TikTok:** [TikTok](https://www.tiktok.com/@cyber.queen_) 
 ---
 

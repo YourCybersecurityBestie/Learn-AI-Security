@@ -1,0 +1,1213 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>AI Model Security Fundamentals — Cyber Queen</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,300;0,400;0,500;0,600;0,700;0,800;1,400&family=Merriweather:ital,wght@0,700;0,900;1,400&display=swap" rel="stylesheet">
+<style>
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+  :root {
+    --cream:       #FFF4EE;
+    --cream-dark:  #F5E8DE;
+    --cream-deeper:#EDD9CC;
+    --blush:       #C3BCAF;
+    --teal:        #60AE9D;
+    --teal-light:  rgba(96,174,157,0.12);
+    --teal-mid:    rgba(96,174,157,0.28);
+    --rose:        #AB7767;
+    --rose-bright: #C4897A;
+    --rose-light:  rgba(171,119,103,0.1);
+    --rose-mid:    rgba(171,119,103,0.25);
+    --light-pink:  #EEC9BE;
+    --dark:        #2C1F1A;
+    --text-body:   #5A3E35;
+    --text-muted:  #8C7068;
+    --border:      rgba(171,119,103,0.18);
+    --border-mid:  rgba(171,119,103,0.35);
+    --white:       #ffffff;
+  }
+
+  html { scroll-behavior: smooth; }
+
+  body {
+    font-family: 'Poppins', sans-serif;
+    background: var(--cream);
+    color: var(--dark);
+    line-height: 1.7;
+    overflow-x: hidden;
+  }
+
+  /* ── NAV ── */
+  nav {
+    position: sticky;
+    top: 0;
+    z-index: 100;
+    padding: 14px 48px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background: rgba(255,244,238,0.95);
+    backdrop-filter: blur(20px);
+    border-bottom: 1px solid var(--border);
+  }
+
+  .nav-logo {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    text-decoration: none;
+  }
+
+  .nav-logo-img { width: 36px; height: 36px; object-fit: contain; border-radius: 50%; }
+  .nav-wordmark { font-family: 'Poppins', sans-serif; font-weight: 700; font-size: 16px; color: var(--rose); }
+
+  .nav-back {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    font-size: 13px;
+    font-weight: 500;
+    color: var(--text-body);
+    text-decoration: none;
+    padding: 7px 16px;
+    border: 1px solid var(--border-mid);
+    border-radius: 100px;
+    transition: all 0.2s;
+  }
+
+  .nav-back:hover { background: var(--rose-light); color: var(--rose); border-color: var(--rose); }
+
+  /* ── HERO ── */
+  .article-hero {
+    background: var(--dark);
+    padding: 72px 48px 64px;
+    position: relative;
+    overflow: hidden;
+  }
+
+  .article-hero::before {
+    content: '';
+    position: absolute;
+    top: -200px; right: -200px;
+    width: 600px; height: 600px;
+    background: radial-gradient(circle, rgba(196,137,122,0.1) 0%, transparent 65%);
+    border-radius: 50%;
+    pointer-events: none;
+  }
+
+  .article-hero::after {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background-image: radial-gradient(circle, rgba(255,244,238,0.04) 1px, transparent 1px);
+    background-size: 28px 28px;
+    pointer-events: none;
+  }
+
+  .hero-inner { max-width: 780px; margin: 0 auto; position: relative; z-index: 1; }
+
+  .series-badge {
+    display: inline-flex;
+    align-items: center;
+    gap: 7px;
+    font-size: 11px;
+    font-weight: 600;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    color: var(--teal);
+    padding: 5px 14px;
+    border: 1px solid rgba(96,174,157,0.3);
+    border-radius: 100px;
+    background: rgba(96,174,157,0.1);
+    margin-bottom: 24px;
+  }
+
+  .series-dot { width: 5px; height: 5px; background: var(--teal); border-radius: 50%; }
+
+  .article-title {
+    font-family: 'Merriweather', serif;
+    font-weight: 900;
+    font-size: clamp(36px, 5vw, 60px);
+    line-height: 1.05;
+    letter-spacing: -0.03em;
+    color: var(--cream);
+    margin-bottom: 20px;
+  }
+
+  .article-title em { font-style: italic; color: var(--light-pink); }
+
+  .article-sub {
+    font-size: 16px;
+    font-weight: 300;
+    color: rgba(255,244,238,0.65);
+    line-height: 1.8;
+    max-width: 620px;
+    margin-bottom: 36px;
+  }
+
+  .author-row {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    padding-top: 28px;
+    border-top: 1px solid rgba(255,244,238,0.1);
+  }
+
+  .author-av {
+    width: 42px; height: 42px;
+    border-radius: 50%;
+    background: linear-gradient(135deg, var(--rose), var(--light-pink));
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-weight: 700;
+    font-size: 13px;
+    color: var(--cream);
+    flex-shrink: 0;
+  }
+
+  .author-name { font-size: 14px; font-weight: 600; color: var(--cream); }
+  .author-role { font-size: 12px; color: rgba(255,244,238,0.5); margin-top: 1px; }
+
+  /* ── TOC ── */
+  .toc-wrap {
+    background: var(--cream-dark);
+    border-bottom: 1px solid var(--border);
+    padding: 32px 48px;
+  }
+
+  .toc-inner {
+    max-width: 780px;
+    margin: 0 auto;
+    display: grid;
+    grid-template-columns: auto 1fr;
+    gap: 24px;
+    align-items: start;
+  }
+
+  .toc-label {
+    font-size: 10px;
+    font-weight: 700;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+    color: var(--rose);
+    padding-top: 2px;
+    white-space: nowrap;
+  }
+
+  .toc-list {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px;
+    list-style: none;
+  }
+
+  .toc-list a {
+    display: inline-block;
+    font-size: 12px;
+    font-weight: 500;
+    color: var(--text-body);
+    text-decoration: none;
+    padding: 4px 12px;
+    border: 1px solid var(--border-mid);
+    border-radius: 100px;
+    background: var(--cream);
+    transition: all 0.2s;
+  }
+
+  .toc-list a:hover { background: var(--rose-light); color: var(--rose); border-color: var(--rose); }
+
+  /* ── ARTICLE BODY ── */
+  .article-body {
+    max-width: 780px;
+    margin: 0 auto;
+    padding: 64px 48px;
+  }
+
+  /* ── SECTION HEADERS ── */
+  .section-header {
+    display: flex;
+    align-items: center;
+    gap: 14px;
+    margin-bottom: 24px;
+    margin-top: 64px;
+  }
+
+  .section-header:first-child { margin-top: 0; }
+
+  .section-num {
+    width: 36px; height: 36px;
+    border-radius: 50%;
+    background: var(--rose);
+    color: var(--cream);
+    font-size: 13px;
+    font-weight: 700;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-shrink: 0;
+  }
+
+  .section-title-text {
+    font-family: 'Merriweather', serif;
+    font-weight: 900;
+    font-size: 24px;
+    letter-spacing: -0.02em;
+    color: var(--dark);
+    line-height: 1.2;
+  }
+
+  /* ── LEAD TEXT ── */
+  .lead {
+    font-size: 17px;
+    font-weight: 400;
+    color: var(--text-body);
+    line-height: 1.85;
+    margin-bottom: 28px;
+  }
+
+  p {
+    font-size: 15px;
+    font-weight: 300;
+    color: var(--text-body);
+    line-height: 1.85;
+    margin-bottom: 20px;
+  }
+
+  strong { font-weight: 600; color: var(--dark); }
+
+  /* ── CALLOUT BLOCK ── */
+  .callout {
+    background: var(--cream-dark);
+    border-left: 3px solid var(--rose);
+    border-radius: 0 12px 12px 0;
+    padding: 20px 24px;
+    margin: 28px 0;
+  }
+
+  .callout p { margin: 0; font-size: 14px; font-style: italic; color: var(--text-body); }
+  .callout strong { color: var(--rose); font-style: normal; }
+
+  /* ── STAT BAR ── */
+  .stat-bar {
+    background: var(--dark);
+    border-radius: 14px;
+    padding: 32px;
+    margin: 32px 0;
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 24px;
+    text-align: center;
+  }
+
+  .stat-item-big {
+    font-family: 'Merriweather', serif;
+    font-size: 40px;
+    font-weight: 900;
+    color: var(--light-pink);
+    line-height: 1;
+    margin-bottom: 8px;
+    letter-spacing: -0.03em;
+  }
+
+  .stat-item-label {
+    font-size: 12px;
+    font-weight: 300;
+    color: rgba(255,244,238,0.5);
+    line-height: 1.5;
+  }
+
+  /* ── TERMS TABLE ── */
+  .terms-table {
+    width: 100%;
+    border-collapse: collapse;
+    margin: 28px 0;
+    font-size: 13px;
+  }
+
+  .terms-table th {
+    background: var(--dark);
+    color: var(--light-pink);
+    font-weight: 600;
+    font-size: 11px;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    padding: 12px 16px;
+    text-align: left;
+  }
+
+  .terms-table th:first-child { border-radius: 10px 0 0 0; }
+  .terms-table th:last-child { border-radius: 0 10px 0 0; }
+
+  .terms-table td {
+    padding: 12px 16px;
+    border-bottom: 1px solid var(--border);
+    vertical-align: top;
+    color: var(--text-body);
+    line-height: 1.6;
+  }
+
+  .terms-table tr:last-child td { border-bottom: none; }
+  .terms-table tr:nth-child(even) td { background: var(--cream-dark); }
+  .terms-table td:first-child { font-weight: 600; color: var(--dark); }
+  .terms-table td:last-child { color: var(--rose); font-size: 12px; }
+
+  /* ── MODEL GRID ── */
+  .model-section-title {
+    font-size: 14px;
+    font-weight: 600;
+    color: var(--dark);
+    margin: 24px 0 12px;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+  }
+
+  .model-section-title::after {
+    content: '';
+    flex: 1;
+    height: 1px;
+    background: var(--border);
+  }
+
+  .model-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+    gap: 10px;
+    margin-bottom: 20px;
+  }
+
+  .model-card {
+    background: var(--white);
+    border: 1px solid var(--border);
+    border-radius: 10px;
+    padding: 14px 16px;
+    transition: all 0.2s;
+  }
+
+  .model-card:hover { border-color: var(--rose); transform: translateY(-1px); }
+  .model-name { font-size: 14px; font-weight: 600; color: var(--dark); margin-bottom: 3px; }
+  .model-by { font-size: 11px; color: var(--text-muted); line-height: 1.4; }
+
+  .model-tag-row { display: flex; gap: 8px; flex-wrap: wrap; margin-top: 12px; }
+
+  .mtag {
+    font-size: 11px;
+    font-weight: 500;
+    padding: 4px 12px;
+    border-radius: 100px;
+  }
+
+  .mtag-blue { background: #E6F1FB; color: #0C447C; }
+  .mtag-amber { background: #FAEEDA; color: #633806; }
+  .mtag-red { background: #FCEBEB; color: #A32D2D; }
+
+  /* ── DEEPSEEK CALLOUT ── */
+  .warning-box {
+    background: #FAEEDA;
+    border: 1px solid rgba(186,117,23,0.3);
+    border-radius: 12px;
+    padding: 20px 24px;
+    margin: 20px 0;
+    display: flex;
+    gap: 14px;
+    align-items: flex-start;
+  }
+
+  .warning-icon {
+    font-size: 20px;
+    flex-shrink: 0;
+    margin-top: 2px;
+  }
+
+  .warning-title { font-size: 14px; font-weight: 600; color: #633806; margin-bottom: 6px; }
+  .warning-text { font-size: 13px; color: #854F0B; line-height: 1.65; }
+
+  /* ── ATTACK PATH CARDS ── */
+  .attack-grid {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 16px;
+    margin: 28px 0;
+  }
+
+  .attack-card {
+    background: var(--white);
+    border: 1px solid var(--border);
+    border-radius: 14px;
+    padding: 24px;
+    position: relative;
+    overflow: hidden;
+  }
+
+  .attack-card::before {
+    content: '';
+    position: absolute;
+    top: 0; left: 0;
+    width: 4px; height: 100%;
+    background: var(--rose);
+  }
+
+  .attack-num {
+    font-size: 10px;
+    font-weight: 700;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    color: var(--rose);
+    margin-bottom: 8px;
+  }
+
+  .attack-title { font-size: 17px; font-weight: 600; color: var(--dark); margin-bottom: 10px; }
+  .attack-what { font-size: 13px; color: var(--text-body); line-height: 1.7; margin-bottom: 10px; }
+  .attack-why { font-size: 13px; color: var(--text-body); line-height: 1.7; margin-bottom: 10px; }
+
+  .attack-signal {
+    background: var(--cream-dark);
+    border-radius: 8px;
+    padding: 10px 14px;
+    font-size: 12px;
+    font-style: italic;
+    color: var(--text-muted);
+    line-height: 1.6;
+  }
+
+  .attack-signal strong { font-style: normal; color: var(--rose); }
+
+  .tag-row { display: flex; gap: 8px; flex-wrap: wrap; margin-top: 14px; }
+
+  .tag {
+    font-size: 11px;
+    font-weight: 500;
+    padding: 3px 10px;
+    border-radius: 100px;
+  }
+
+  .tag-red { background: #FCEBEB; color: #A32D2D; }
+  .tag-teal { background: #E1F5EE; color: #0F6E56; }
+
+  /* ── INCIDENT CARDS ── */
+  .incident-grid { display: grid; grid-template-columns: 1fr; gap: 14px; margin: 28px 0; }
+
+  .incident-card {
+    background: var(--white);
+    border: 1px solid var(--border);
+    border-radius: 12px;
+    padding: 22px 24px;
+    display: grid;
+    grid-template-columns: auto 1fr;
+    gap: 16px;
+    align-items: start;
+  }
+
+  .incident-dot {
+    width: 10px; height: 10px;
+    background: #E24B4A;
+    border-radius: 50%;
+    margin-top: 6px;
+    flex-shrink: 0;
+    box-shadow: 0 0 0 3px rgba(226,75,74,0.15);
+  }
+
+  .incident-label {
+    font-size: 10px;
+    font-weight: 700;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: #A32D2D;
+    margin-bottom: 6px;
+  }
+
+  .incident-title { font-size: 15px; font-weight: 600; color: var(--dark); margin-bottom: 8px; }
+  .incident-body { font-size: 13px; color: var(--text-body); line-height: 1.7; margin-bottom: 10px; }
+
+  .incident-lesson {
+    background: var(--cream-dark);
+    border-radius: 8px;
+    padding: 10px 14px;
+    font-size: 12px;
+    color: var(--text-muted);
+    line-height: 1.6;
+  }
+
+  .incident-lesson strong { color: var(--dark); font-style: normal; }
+
+  /* ── CONTROLS TABLE ── */
+  .controls-section { margin: 28px 0; }
+
+  .controls-label {
+    font-size: 12px;
+    font-weight: 700;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: var(--teal);
+    margin-bottom: 12px;
+    padding: 6px 14px;
+    background: var(--teal-light);
+    border: 1px solid var(--teal-mid);
+    border-radius: 100px;
+    display: inline-block;
+  }
+
+  .controls-grid { display: grid; grid-template-columns: 1fr; gap: 10px; margin-bottom: 24px; }
+
+  .control-card {
+    background: var(--white);
+    border: 1px solid var(--border);
+    border-radius: 10px;
+    padding: 16px 18px;
+    display: grid;
+    grid-template-columns: 1fr auto;
+    gap: 12px;
+    align-items: center;
+  }
+
+  .control-name { font-size: 14px; font-weight: 600; color: var(--dark); margin-bottom: 4px; }
+  .control-desc { font-size: 12px; color: var(--text-muted); line-height: 1.6; }
+
+  .control-where {
+    font-size: 10px;
+    font-weight: 600;
+    padding: 4px 10px;
+    border-radius: 100px;
+    white-space: nowrap;
+    background: var(--teal-light);
+    color: #0F6E56;
+    border: 1px solid var(--teal-mid);
+  }
+
+  /* ── FRAMEWORK CARDS ── */
+  .framework-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 14px; margin: 28px 0; }
+
+  .fw-card {
+    background: var(--white);
+    border: 1px solid var(--border);
+    border-radius: 14px;
+    padding: 24px;
+    text-decoration: none;
+    color: inherit;
+    transition: all 0.25s;
+    display: block;
+  }
+
+  .fw-card:hover {
+    border-color: var(--rose);
+    box-shadow: 0 8px 28px rgba(171,119,103,0.12);
+    transform: translateY(-2px);
+  }
+
+  .fw-badge {
+    display: inline-block;
+    font-size: 10px;
+    font-weight: 700;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    padding: 4px 10px;
+    border-radius: 4px;
+    margin-bottom: 12px;
+  }
+
+  .fw-purple { background: #EEEDFE; color: #3C3489; }
+  .fw-blue { background: #E6F1FB; color: #0C447C; }
+  .fw-red { background: #FCEBEB; color: #A32D2D; }
+  .fw-amber { background: #FAEEDA; color: #633806; }
+
+  .fw-title { font-size: 16px; font-weight: 600; color: var(--dark); margin-bottom: 6px; }
+  .fw-start { font-size: 11px; font-weight: 600; color: var(--rose); margin-bottom: 10px; }
+  .fw-desc { font-size: 12px; color: var(--text-muted); line-height: 1.65; }
+  .fw-link { font-size: 12px; color: var(--teal); margin-top: 10px; display: block; font-weight: 500; }
+
+  /* ── PERSONA CARDS ── */
+  .persona-grid { display: grid; grid-template-columns: 1fr; gap: 12px; margin: 28px 0; }
+
+  .persona-card { border-radius: 14px; padding: 22px 24px; }
+  .persona-purple { background: #EEEDFE; border: 1px solid #AFA9EC; }
+  .persona-teal { background: #E1F5EE; border: 1px solid #5DCAA5; }
+  .persona-blue { background: #E6F1FB; border: 1px solid #85B7EB; }
+
+  .persona-label { font-size: 10px; font-weight: 700; letter-spacing: 0.1em; text-transform: uppercase; margin-bottom: 8px; }
+  .persona-purple .persona-label { color: #3C3489; }
+  .persona-teal .persona-label { color: #0F6E56; }
+  .persona-blue .persona-label { color: #0C447C; }
+
+  .persona-text { font-size: 13px; line-height: 1.7; }
+  .persona-purple .persona-text { color: #534AB7; }
+  .persona-teal .persona-text { color: #0F6E56; }
+  .persona-blue .persona-text { color: #185FA5; }
+
+  /* ── RESOURCES ── */
+  .resource-list { list-style: none; margin: 20px 0; }
+
+  .resource-list li {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    padding: 12px 16px;
+    background: var(--white);
+    border: 1px solid var(--border);
+    border-radius: 10px;
+    margin-bottom: 8px;
+    transition: all 0.2s;
+  }
+
+  .resource-list li:hover { border-color: var(--rose); background: var(--rose-light); }
+
+  .resource-list a {
+    font-size: 14px;
+    font-weight: 500;
+    color: var(--dark);
+    text-decoration: none;
+    flex: 1;
+  }
+
+  .resource-list li::before {
+    content: '→';
+    color: var(--rose);
+    font-weight: 700;
+    flex-shrink: 0;
+  }
+
+  /* ── SERIES STRIP ── */
+  .series-strip {
+    background: var(--dark);
+    padding: 48px;
+    margin-top: 64px;
+  }
+
+  .series-strip-inner { max-width: 780px; margin: 0 auto; }
+
+  .series-strip-label {
+    font-size: 11px;
+    font-weight: 600;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+    color: var(--rose-bright);
+    margin-bottom: 12px;
+  }
+
+  .series-strip-title {
+    font-family: 'Merriweather', serif;
+    font-weight: 900;
+    font-size: 28px;
+    color: var(--cream);
+    letter-spacing: -0.02em;
+    margin-bottom: 28px;
+  }
+
+  .series-strip-title em { font-style: italic; color: var(--light-pink); }
+
+  .next-posts {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+    gap: 10px;
+  }
+
+  .next-card {
+    background: rgba(255,244,238,0.04);
+    border: 1px solid rgba(255,244,238,0.1);
+    border-radius: 10px;
+    padding: 16px 18px;
+    text-decoration: none;
+    color: var(--cream);
+    transition: all 0.2s;
+  }
+
+  .next-card:hover { background: rgba(255,244,238,0.08); border-color: rgba(171,119,103,0.4); }
+  .next-card-num { font-size: 10px; font-weight: 700; letter-spacing: 0.1em; text-transform: uppercase; color: var(--rose-bright); margin-bottom: 6px; }
+  .next-card-title { font-size: 13px; font-weight: 500; color: var(--cream); line-height: 1.35; }
+  .next-card.current { border-color: rgba(96,174,157,0.4); background: rgba(96,174,157,0.06); }
+  .next-card.current .next-card-num { color: var(--teal); }
+
+  /* ── FOOTER ── */
+  footer {
+    background: var(--dark);
+    border-top: 1px solid rgba(255,244,238,0.08);
+    padding: 28px 48px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: 12px;
+  }
+
+  .footer-brand { font-weight: 700; font-size: 14px; color: var(--rose-bright); }
+  .footer-copy { font-size: 12px; color: rgba(255,244,238,0.3); }
+  .footer-links { display: flex; gap: 18px; }
+  .footer-links a { font-size: 12px; color: rgba(255,244,238,0.4); text-decoration: none; transition: color 0.2s; }
+  .footer-links a:hover { color: var(--light-pink); }
+
+  /* ── RESPONSIVE ── */
+  @media (max-width: 768px) {
+    nav { padding: 12px 20px; }
+    .article-hero { padding: 48px 24px 40px; }
+    .toc-wrap { padding: 20px 24px; }
+    .toc-inner { grid-template-columns: 1fr; gap: 12px; }
+    .article-body { padding: 40px 24px; }
+    .stat-bar { grid-template-columns: 1fr; gap: 16px; }
+    .framework-grid { grid-template-columns: 1fr; }
+    .model-grid { grid-template-columns: 1fr 1fr; }
+    .series-strip { padding: 36px 24px; }
+    footer { flex-direction: column; text-align: center; padding: 24px; }
+  }
+</style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav>
+  <a href="./index.html" class="nav-logo">
+    <img src="https://media.canva.com/v2/image-resize/format:PNG/height:200/quality:100/uri:ifs%3A%2F%2FM%2FMIDW-boj8tLtnOd03yyvrJTpo1IUOkzZk07z-K4L2BY.png/watermark:F/width:200?csig=AAAAAAAAAAAAAAAAAAAAAH-Q9M2YHWSdk-wSNBCvhOhDaKxRv94fkcHq5BjybJY9&exp=1775445276&osig=AAAAAAAAAAAAAAAAAAAAABdefvK0qIR827sDwYcIkQ_Btmo0Ew8ZQ6jYJZqPqsUT&signer=media-rpc&x-canva-quality=thumbnail" alt="Cyber Queen" class="nav-logo-img">
+    <span class="nav-wordmark">Cyber Queen</span>
+  </a>
+  <a href="./index.html" class="nav-back">← Back to Series</a>
+</nav>
+
+<!-- HERO -->
+<div class="article-hero">
+  <div class="hero-inner">
+    <div class="series-badge"><span class="series-dot"></span>Before you can learn AI security — Post 1 of 8</div>
+    <h1 class="article-title">The <em>Model.</em></h1>
+    <p class="article-sub">You cannot protect what you do not understand. Before we talk threats, exploits, and controls — we need to talk about the thing itself. Every AI system is built on a model. And every model is a target.</p>
+    <div class="author-row">
+      <div class="author-av">VS</div>
+      <div>
+        <div class="author-name">Venicia Solomons</div>
+        <div class="author-role">Cloud & AI Security Solutions Engineer · Microsoft Denmark</div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- TOC -->
+<div class="toc-wrap">
+  <div class="toc-inner">
+    <div class="toc-label">Contents</div>
+    <ul class="toc-list">
+      <li><a href="#why">Why this matters</a></li>
+      <li><a href="#what">What is a model</a></li>
+      <li><a href="#models">Models you need to know</a></li>
+      <li><a href="#attacks">3 attack paths</a></li>
+      <li><a href="#incidents">Real incidents</a></li>
+      <li><a href="#controls">Security controls</a></li>
+      <li><a href="#frameworks">Frameworks</a></li>
+      <li><a href="#next">What to do now</a></li>
+    </ul>
+  </div>
+</div>
+
+<!-- BODY -->
+<div class="article-body">
+
+  <!-- WHY -->
+  <div id="why">
+    <div class="section-header">
+      <div class="section-num">1</div>
+      <div class="section-title-text">Why this matters</div>
+    </div>
+
+    <div class="stat-bar">
+      <div>
+        <div class="stat-item-big">73%</div>
+        <div class="stat-item-label">of enterprises have hundreds of AI models in production right now</div>
+      </div>
+      <div>
+        <div class="stat-item-big">41%</div>
+        <div class="stat-item-label">reported an AI security incident by late 2024</div>
+      </div>
+      <div>
+        <div class="stat-item-big">0</div>
+        <div class="stat-item-label">AI-specific security controls in most of those organisations</div>
+      </div>
+    </div>
+
+    <p class="lead">AI is not a future threat surface. It is a present one.</p>
+    <p>Every copilot, every assistant, every automated workflow your organisation uses is built on a model. And most security teams are still treating AI security like it is someone else's problem. It is not. It is yours.</p>
+  </div>
+
+  <!-- WHAT IS A MODEL -->
+  <div id="what">
+    <div class="section-header">
+      <div class="section-num">2</div>
+      <div class="section-title-text">What actually is an AI model?</div>
+    </div>
+
+    <p class="lead">Strip away the hype. A model is math — billions of numerical values called weights, shaped by training data, stored in files on a server.</p>
+
+    <div class="callout">
+      <p><strong>Simple version:</strong> Picture a brain that studied a massive library of text, images, or code. Everything it learned is locked into those weights permanently — until someone retrains or fine-tunes it. Those weights are not just a technical detail. They are the model.</p>
+    </div>
+
+    <p>There are two completely different phases to understand — training and inference. They have different attack surfaces, which we cover in depth in Post 2. For now, know that training is where the model learns and inference is where it runs.</p>
+
+    <p style="font-size:13px;font-weight:600;color:var(--dark);margin-bottom:10px;">Key terms you need to know</p>
+    <table class="terms-table">
+      <thead>
+        <tr>
+          <th>Term</th>
+          <th>What it means</th>
+          <th>Why it matters for security</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td>Weights</td>
+          <td>The numerical values that define what the model knows</td>
+          <td>Stealing weights = stealing the entire model</td>
+        </tr>
+        <tr>
+          <td>Training data</td>
+          <td>The data used to shape those weights</td>
+          <td>Poisoning training data corrupts the model permanently</td>
+        </tr>
+        <tr>
+          <td>Parameters</td>
+          <td>The count of weights in a model — billions to trillions</td>
+          <td>More parameters = larger attack surface</td>
+        </tr>
+        <tr>
+          <td>Fine-tuning</td>
+          <td>Retraining a model on new specific data</td>
+          <td>Introduces supply chain risk if not controlled</td>
+        </tr>
+        <tr>
+          <td>Inference</td>
+          <td>When the model runs and generates output</td>
+          <td>Where most runtime attacks happen</td>
+        </tr>
+        <tr>
+          <td>Context window</td>
+          <td>What the model can see in one interaction</td>
+          <td>Can be poisoned with malicious instructions</td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+
+  <!-- MODELS -->
+  <div id="models">
+    <div class="section-header">
+      <div class="section-num">3</div>
+      <div class="section-title-text">Models being deployed in enterprises right now</div>
+    </div>
+
+    <p>These are not hypothetical. These models are running in production environments today. Each one comes with its own security considerations.</p>
+
+    <div class="model-section-title">Closed source</div>
+    <div class="model-grid">
+      <div class="model-card"><div class="model-name">GPT-5.4</div><div class="model-by">OpenAI via Azure OpenAI Service</div></div>
+      <div class="model-card"><div class="model-name">Claude Opus 4.6</div><div class="model-by">Anthropic via AWS Bedrock</div></div>
+      <div class="model-card"><div class="model-name">Gemini 3.1 Ultra</div><div class="model-by">Google via Vertex AI</div></div>
+      <div class="model-card"><div class="model-name">Grok 3</div><div class="model-by">xAI via API</div></div>
+    </div>
+
+    <div class="model-section-title">Open source / open weight</div>
+    <div class="model-grid">
+      <div class="model-card"><div class="model-name">Llama 4</div><div class="model-by">Meta — self-hosted or cloud</div></div>
+      <div class="model-card"><div class="model-name">Mistral Large 2</div><div class="model-by">Mistral AI — self-hosted or API</div></div>
+      <div class="model-card"><div class="model-name">DeepSeek V3</div><div class="model-by">DeepSeek — open weights</div></div>
+      <div class="model-card"><div class="model-name">Nemotron 3</div><div class="model-by">NVIDIA — edge and cloud</div></div>
+    </div>
+
+    <div class="model-tag-row">
+      <span class="mtag mtag-blue">Closed source = limited visibility</span>
+      <span class="mtag mtag-amber">Open source = full access, full risk</span>
+    </div>
+
+    <div class="warning-box" style="margin-top:20px;">
+      <div class="warning-icon">⚠️</div>
+      <div>
+        <div class="warning-title">A note on DeepSeek</div>
+        <div class="warning-text">DeepSeek delivers near-frontier performance at a fraction of the cost of closed models, and its weights are publicly available. That makes it attractive for organisations watching their AI spend. But it comes from China — which introduces a geopolitical risk layer that most security teams are not factoring in. Your risk assessment needs to include data sovereignty, supply chain trust, and regulatory exposure — not just performance benchmarks.</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ATTACKS -->
+  <div id="attacks">
+    <div class="section-header">
+      <div class="section-num">4</div>
+      <div class="section-title-text">The 3 core attack paths</div>
+    </div>
+
+    <p>Every AI model has three fundamental attack surfaces. This is how you start thinking like an attacker.</p>
+
+    <div class="attack-grid">
+      <div class="attack-card">
+        <div class="attack-num">Attack path 01</div>
+        <div class="attack-title">Training data poisoning</div>
+        <div class="attack-what"><strong>What it is:</strong> An attacker injects malicious, biased, or corrupted data into the training pipeline. The model learns from that data and its behaviour is permanently altered.</div>
+        <div class="attack-why"><strong>Why it is dangerous:</strong> The model behaves normally on regular inputs but produces incorrect or attacker-controlled outputs when triggered. By the time you notice, the damage is baked into the weights.</div>
+        <div class="attack-signal"><strong>Real signal:</strong> Corrupting the textbook before the student ever starts studying. Everything they learn is built on a compromised foundation.</div>
+        <div class="tag-row"><span class="tag tag-red">Supply chain risk</span><span class="tag tag-red">Insider threat</span></div>
+      </div>
+
+      <div class="attack-card">
+        <div class="attack-num">Attack path 02</div>
+        <div class="attack-title">Model theft — weight extraction</div>
+        <div class="attack-what"><strong>What it is:</strong> An attacker directly steals model weight files, or reconstructs a near-identical model by sending thousands of crafted queries and analysing the responses.</div>
+        <div class="attack-why"><strong>Why it is dangerous:</strong> Stealing the weights means stealing the model entirely. The attacker can run it privately, probe it offline, or use it to craft attacks against the original system.</div>
+        <div class="attack-signal"><strong>Real signal:</strong> Your model is intellectual property. Losing it is equivalent to losing your source code.</div>
+        <div class="tag-row"><span class="tag tag-red">IP theft</span><span class="tag tag-red">API abuse</span></div>
+      </div>
+
+      <div class="attack-card">
+        <div class="attack-num">Attack path 03</div>
+        <div class="attack-title">Training data extraction via outputs</div>
+        <div class="attack-what"><strong>What it is:</strong> An attacker queries the model repeatedly with crafted inputs to reconstruct private data that was in the training set.</div>
+        <div class="attack-why"><strong>Why it is dangerous:</strong> Information considered private during training can leak through model responses. Critical for models trained on HR records, customer data, or legal documents.</div>
+        <div class="attack-signal"><strong>Real signal:</strong> What goes in does not stay in. This is a data breach that happens one response at a time.</div>
+        <div class="tag-row"><span class="tag tag-red">Data breach</span><span class="tag tag-red">Privacy violation</span></div>
+      </div>
+    </div>
+  </div>
+
+  <!-- INCIDENTS -->
+  <div id="incidents">
+    <div class="section-header">
+      <div class="section-num">5</div>
+      <div class="section-title-text">Real world incidents</div>
+    </div>
+
+    <p>This is not theoretical. It has already happened.</p>
+
+    <div class="incident-grid">
+      <div class="incident-card">
+        <div class="incident-dot"></div>
+        <div>
+          <div class="incident-label">Data poisoning — 2024</div>
+          <div class="incident-title">ByteDance insider manipulation</div>
+          <div class="incident-body">A ByteDance AI intern deliberately manipulated training data to skew an algorithm's outputs. This was an insider threat at the training data layer — not an external attacker, but someone with legitimate access.</div>
+          <div class="incident-lesson"><strong>What it tells us:</strong> Your biggest data poisoning risk might be the person with access to your training pipeline.</div>
+        </div>
+      </div>
+
+      <div class="incident-card">
+        <div class="incident-dot"></div>
+        <div>
+          <div class="incident-label">Model extraction — 2024</div>
+          <div class="incident-title">Cloud AI provider API attacks</div>
+          <div class="incident-body">Multiple cloud AI providers suffered model extraction attacks through their public APIs. Attackers sent thousands of crafted queries to reverse-engineer and clone the models without authorisation.</div>
+          <div class="incident-lesson"><strong>What it tells us:</strong> If your model API has no rate limiting or anomaly detection, it is vulnerable to extraction. Access does not have to be unauthorised to be exploited.</div>
+        </div>
+      </div>
+
+      <div class="incident-card">
+        <div class="incident-dot"></div>
+        <div>
+          <div class="incident-label">Training data leak — 2023</div>
+          <div class="incident-title">ChatGPT training data extraction</div>
+          <div class="incident-body">Google researchers demonstrated they could pull pieces of ChatGPT's private training data by querying the model repeatedly and analysing responses. The technique was straightforward and required no special access.</div>
+          <div class="incident-lesson"><strong>What it tells us:</strong> Even the most widely deployed models in the world are not immune. If you train on sensitive data, the outputs are a potential leak channel.</div>
+        </div>
+      </div>
+
+      <div class="incident-card">
+        <div class="incident-dot"></div>
+        <div>
+          <div class="incident-label">Agentic AI espionage — 2025</div>
+          <div class="incident-title">Claude Code AI-orchestrated attack</div>
+          <div class="incident-body">Anthropic disclosed that a Chinese state-sponsored group manipulated Claude Code into attempting infiltration into approximately thirty global targets. AI performed 80 to 90 percent of the campaign autonomously — the first documented large-scale cyberattack executed with minimal human intervention.</div>
+          <div class="incident-lesson"><strong>What it tells us:</strong> Agentic AI is a force multiplier for attackers. When AI can take actions, write exploit code, and exfiltrate data on its own, the blast radius is enormous.</div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- CONTROLS -->
+  <div id="controls">
+    <div class="section-header">
+      <div class="section-num">6</div>
+      <div class="section-title-text">Security controls that actually apply</div>
+    </div>
+
+    <p>Good news — many of these map to security fundamentals you already know. The context is new, the principles are not.</p>
+
+    <div class="controls-section">
+      <div class="controls-label">Preventive</div>
+      <div class="controls-grid">
+        <div class="control-card">
+          <div><div class="control-name">Data provenance and validation</div><div class="control-desc">Know where your training data came from. Audit it before it touches your model.</div></div>
+          <div class="control-where">Training pipeline</div>
+        </div>
+        <div class="control-card">
+          <div><div class="control-name">Access controls on model weights</div><div class="control-desc">Treat weights like source code. Role-based access, encryption at rest, full audit logs.</div></div>
+          <div class="control-where">Model storage</div>
+        </div>
+        <div class="control-card">
+          <div><div class="control-name">Model signing and integrity checks</div><div class="control-desc">Verify the model has not been tampered with before deployment. Critical for open source.</div></div>
+          <div class="control-where">Deployment</div>
+        </div>
+        <div class="control-card">
+          <div><div class="control-name">Differential privacy</div><div class="control-desc">Add noise to outputs so training data cannot be reconstructed from model responses.</div></div>
+          <div class="control-where">Model outputs</div>
+        </div>
+        <div class="control-card">
+          <div><div class="control-name">Supply chain vetting</div><div class="control-desc">Audit every dataset, library, and pre-trained model before it enters your pipeline.</div></div>
+          <div class="control-where">Training</div>
+        </div>
+      </div>
+    </div>
+
+    <div class="controls-section">
+      <div class="controls-label" style="background:rgba(171,119,103,0.1);border-color:var(--border-mid);color:var(--rose);">Detective</div>
+      <div class="controls-grid">
+        <div class="control-card">
+          <div><div class="control-name">Output monitoring</div><div class="control-desc">Watch what your model returns. Anomalous query patterns signal extraction attempts.</div></div>
+          <div class="control-where" style="background:var(--rose-light);color:var(--rose);border-color:var(--border-mid);">Runtime</div>
+        </div>
+        <div class="control-card">
+          <div><div class="control-name">Query rate limiting and anomaly detection</div><div class="control-desc">Flag and throttle unusual querying behaviour at the API layer.</div></div>
+          <div class="control-where" style="background:var(--rose-light);color:var(--rose);border-color:var(--border-mid);">API layer</div>
+        </div>
+        <div class="control-card">
+          <div><div class="control-name">Model drift detection</div><div class="control-desc">Monitor model behaviour over time. Unexpected output changes can indicate tampering.</div></div>
+          <div class="control-where" style="background:var(--rose-light);color:var(--rose);border-color:var(--border-mid);">Production</div>
+        </div>
+        <div class="control-card">
+          <div><div class="control-name">Audit logging</div><div class="control-desc">Log all access to model weights, training pipelines, and inference endpoints.</div></div>
+          <div class="control-where" style="background:var(--rose-light);color:var(--rose);border-color:var(--border-mid);">All layers</div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- FRAMEWORKS -->
+  <div id="frameworks">
+    <div class="section-header">
+      <div class="section-num">7</div>
+      <div class="section-title-text">The frameworks you need to know</div>
+    </div>
+
+    <p>You do not need to memorise all of these right now. Understand what each one is for and you will know where to go when you need it.</p>
+
+    <div class="framework-grid">
+      <a href="https://genai.owasp.org" target="_blank" class="fw-card">
+        <div class="fw-badge fw-purple">OWASP LLM Top 10</div>
+        <div class="fw-start">Start here.</div>
+        <div class="fw-desc">The closest thing to classic OWASP but built for LLMs. Covers prompt injection, data leakage, supply chain risk. Updated for 2025.</div>
+        <div class="fw-link">genai.owasp.org →</div>
+      </a>
+
+      <a href="https://owaspai.org" target="_blank" class="fw-card">
+        <div class="fw-badge fw-blue">OWASP AI Exchange</div>
+        <div class="fw-start">Go deeper here.</div>
+        <div class="fw-desc">OWASP Flagship project. Covers all AI — not just LLMs. Feeding directly into the EU AI Act and ISO/IEC 27090.</div>
+        <div class="fw-link">owaspai.org →</div>
+      </a>
+
+      <a href="https://atlas.mitre.org" target="_blank" class="fw-card">
+        <div class="fw-badge fw-red">MITRE ATLAS</div>
+        <div class="fw-start">Use for threat modelling.</div>
+        <div class="fw-desc">ATT&CK but for AI. A knowledge base of real adversary techniques against AI models. Your go-to for threat modelling.</div>
+        <div class="fw-link">atlas.mitre.org →</div>
+      </a>
+
+      <a href="https://airc.nist.gov/Home" target="_blank" class="fw-card">
+        <div class="fw-badge fw-amber">NIST AI RMF</div>
+        <div class="fw-start">Use for governance.</div>
+        <div class="fw-desc">Not attack-specific but the governance standard your risk and compliance teams will reference for enterprise AI accountability.</div>
+        <div class="fw-link">airc.nist.gov →</div>
+      </a>
+    </div>
+  </div>
+
+  <!-- NEXT STEPS -->
+  <div id="next">
+    <div class="section-header">
+      <div class="section-num">8</div>
+      <div class="section-title-text">What should you do right now?</div>
+    </div>
+
+    <p>Depending on where you are in your journey, your next step looks different.</p>
+
+    <div class="persona-grid">
+      <div class="persona-card persona-purple">
+        <div class="persona-label">You are breaking into security</div>
+        <div class="persona-text">Start with the OWASP LLM Top 10. Read it once all the way through. Every job interview in AI security will touch something on that list. You will already be ahead of most candidates. Then come back for Post 2.</div>
+      </div>
+      <div class="persona-card persona-teal">
+        <div class="persona-label">You are already working in security</div>
+        <div class="persona-text">Pull up one AI tool your organisation is using right now. Ask yourself: do we have access controls on the model? Are we monitoring outputs? If you cannot answer yes to both — you have work to do. Start there.</div>
+      </div>
+      <div class="persona-card persona-blue">
+        <div class="persona-label">You use AI tools at work</div>
+        <div class="persona-text">The data you put into that model does not disappear. Ask your IT or security team: "Is this AI tool enterprise-approved and what model is it using?" That one question could protect you and your company.</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- RESOURCES -->
+  <div style="margin-top:56px; padding-top:40px; border-top:1px solid var(--border);">
+    <p style="font-size:13px;font-weight:600;color:var(--dark);margin-bottom:16px;">Essential reading</p>
+    <ul class="resource-list">
+      <li><a href="https://genai.owasp.org/llm-top-10/" target="_blank">OWASP Top 10 for LLM Applications 2025</a></li>
+      <li><a href="https://owaspai.org" target="_blank">OWASP AI Exchange</a></li>
+      <li><a href="https://atlas.mitre.org" target="_blank">MITRE ATLAS Knowledge Base</a></li>
+      <li><a href="https://airc.nist.gov/Home" target="_blank">NIST AI Risk Management Framework</a></li>
+      <li><a href="https://www.anthropic.com/news/disrupting-AI-espionage" target="_blank">Anthropic AI Espionage Case Study</a></li>
+      <li><a href="https://www.microsoft.com/en-us/security/blog/" target="_blank">Microsoft Security Blog</a></li>
+    </ul>
+  </div>
+
+</div>
+
+<!-- SERIES STRIP -->
+<div class="series-strip">
+  <div class="series-strip-inner">
+    <div class="series-strip-label">Continue the series</div>
+    <div class="series-strip-title">8 fundamentals.<br><em>Keep going.</em></div>
+    <div class="next-posts">
+      <div class="next-card current">
+        <div class="next-card-num">✓ Post 01</div>
+        <div class="next-card-title">The Model</div>
+      </div>
+      <div class="next-card">
+        <div class="next-card-num">Post 02</div>
+        <div class="next-card-title">Training vs Inference</div>
+      </div>
+      <div class="next-card">
+        <div class="next-card-num">Post 03</div>
+        <div class="next-card-title">Prompts are Inputs</div>
+      </div>
+      <div class="next-card">
+        <div class="next-card-num">Post 04</div>
+        <div class="next-card-title">Context Windows</div>
+      </div>
+      <div class="next-card">
+        <div class="next-card-num">Post 05</div>
+        <div class="next-card-title">Embeddings & Vectors</div>
+      </div>
+      <div class="next-card">
+        <div class="next-card-num">Post 06</div>
+        <div class="next-card-title">Agents & Tool Use</div>
+      </div>
+      <div class="next-card">
+        <div class="next-card-num">Post 07</div>
+        <div class="next-card-title">Fine-tuning & RLHF</div>
+      </div>
+      <div class="next-card">
+        <div class="next-card-num">Post 08</div>
+        <div class="next-card-title">APIs as Delivery</div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- FOOTER -->
+<footer>
+  <div class="footer-brand">Cyber Queen © 2026</div>
+  <div class="footer-copy">No gatekeeping. Just knowledge.</div>
+  <div class="footer-links">
+    <a href="https://www.instagram.com/cyber.queen_/" target="_blank">Instagram</a>
+    <a href="https://www.linkedin.com/in/veniciasolomons/" target="_blank">LinkedIn</a>
+    <a href="https://www.youtube.com/@cyber.queen_" target="_blank">YouTube</a>
+    <a href="https://www.tiktok.com/@cyber.queen_" target="_blank">TikTok</a>
+    <a href="https://github.com/YourCybersecurityBestie/Learn-AI-Security-" target="_blank">GitHub</a>
+  </div>
+</footer>
+
+</body>
+</html>

@@ -157,11 +157,42 @@ Microsoft is a participant alongside AWS, Apple, Broadcom, Cisco, CrowdStrike, G
 
 ## 🎯 Pillar 3: Security FROM AI
 
-> Adversaries are using AI too. Phishing at scale, malware variant generation, deepfakes, agentic recon. This pillar covers Microsoft's intelligence work, detection content, and the defensive AI Microsoft itself runs against attackers.
+> Adversaries are using AI too. Nation-state actors are experimenting with LLMs for recon and social engineering, criminals are running phishing and fraud at machine scale, and influence operators are pushing synthetic media into elections. This pillar is about tracking that activity, hardening AI systems against attack, and giving researchers the tools to break them safely.
 
-- [Defender XDR, security for AI (covers AI-targeted attacks)](https://learn.microsoft.com/en-us/defender-xdr/security-for-ai/defender-security-for-ai)
-- [Microsoft Security Insider hub (MDDR, MTAC, threat reports)](https://www.microsoft.com/en-us/security/security-insider)
-- [Microsoft Digital Defense Report](https://www.microsoft.com/en-us/security/business/microsoft-digital-defense-report). Annual report with sections on AI-enabled threats and influence operations.
+### Microsoft Threat Intelligence on adversarial AI use
+
+> The Microsoft Threat Intelligence community analyses **100 trillion signals daily**. The work below is their public reporting on how threat actors are weaponising AI.
+
+- [AI threats, Microsoft Security Blog topic feed](https://www.microsoft.com/en-us/security/blog/threat-intelligence/ai-threats/). The running list of every Microsoft Threat Intelligence post on adversarial AI use.
+- [Staying ahead of threat actors in the age of AI](https://www.microsoft.com/en-us/security/blog/2024/02/14/staying-ahead-of-threat-actors-in-the-age-of-ai/). The original Microsoft + OpenAI joint research documenting how nation-state actors (Forest Blizzard, Emerald Sleet, Crimson Sandstorm, Charcoal Typhoon, Salmon Typhoon) were using LLMs for recon, scripting, and social engineering, and how their accounts were disrupted.
+- [Microsoft Threat Intelligence blog landing](https://www.microsoft.com/en-us/security/blog/topic/threat-intelligence/). Weekly threat research, including the AI-related campaigns.
+
+### Influence operations, deepfakes, and election integrity
+
+> Synthetic media is one of the highest-impact malicious uses of AI. Microsoft tracks it through the Threat Analysis Center and has co-led industry agreements to slow it down.
+
+- [Microsoft Threat Analysis Center (MTAC)](https://www.microsoft.com/en-us/corporate-responsibility/customer-security-trust/microsoft-threat-analysis-center). The team that publishes the influence-operations reports on Russia, Iran, and China.
+- [Tech Accord to Combat Deceptive Use of AI in 2024 Elections](https://news.microsoft.com/source/2024/02/16/technology-industry-to-combat-deceptive-use-of-ai-in-2024-elections/). The Munich industry agreement signed by Microsoft, OpenAI, Google, Meta, Adobe, and others, plus the commitments it imposes.
+- [Microsoft Digital Defense Report](https://www.microsoft.com/en-us/security/business/microsoft-digital-defense-report). The flagship annual report with dedicated sections on AI-enabled threats and influence operations.
+- [Microsoft Security Insider hub](https://www.microsoft.com/en-us/security/security-insider). Home of MTAC threat-landscape briefings and the MDDR.
+
+### AI red teaming and adversarial testing
+
+> If you build AI, you need to break it before someone else does. Microsoft publishes both the methodology and the tooling.
+
+- [Microsoft AI Red Team](https://learn.microsoft.com/en-us/security/ai-red-team/). The official guidance and methodology library from Microsoft's AI Red Team.
+- [PyRIT (Python Risk Identification Tool)](https://github.com/Azure/PyRIT). Microsoft's open-source framework for automated red teaming of generative AI systems. Multimodal, scalable, used internally by the AI Red Team.
+- [Azure AI Foundry, AI Red Teaming Agent](https://learn.microsoft.com/en-us/azure/ai-foundry/concepts/ai-red-teaming-agent). Built-in agent for running automated adversarial tests against models deployed in Foundry.
+
+### Defensive AI and runtime detections
+
+- [Defender XDR, security for AI](https://learn.microsoft.com/en-us/defender-xdr/security-for-ai/defender-security-for-ai). Detection content for attacks targeting AI workloads.
+- [Defender for Cloud, AI threat protection](https://learn.microsoft.com/en-us/azure/defender-for-cloud/ai-threat-protection). Runtime alerts for prompt injection, jailbreaks, credential exposure, and data exfiltration in AI apps.
+- [Azure AI Content Safety, Prompt Shields](https://learn.microsoft.com/en-us/azure/ai-services/content-safety/concepts/jailbreak-detection). Content-layer detection of direct and indirect prompt injection attacks.
+
+### Coordinated disclosure for AI flaws
+
+- [Microsoft Bug Bounty Programs](https://www.microsoft.com/en-us/msrc/bounty). Includes the Microsoft AI Bug Bounty, which pays researchers for vulnerabilities in Microsoft's AI-powered products and the underlying AI platform.
 
 ---
 

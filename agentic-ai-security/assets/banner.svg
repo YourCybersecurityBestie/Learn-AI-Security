@@ -1,0 +1,105 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1600 500" width="1600" height="500" role="img" aria-label="Security in the Agentic AI Space">
+  <defs>
+    <linearGradient id="bg" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0%" stop-color="#0B0420"/>
+      <stop offset="55%" stop-color="#1A0B3D"/>
+      <stop offset="100%" stop-color="#2B0A4A"/>
+    </linearGradient>
+    <radialGradient id="glowA" cx="0.18" cy="0.4" r="0.55">
+      <stop offset="0%" stop-color="#FF4FB8" stop-opacity="0.55"/>
+      <stop offset="100%" stop-color="#FF4FB8" stop-opacity="0"/>
+    </radialGradient>
+    <radialGradient id="glowB" cx="0.82" cy="0.65" r="0.55">
+      <stop offset="0%" stop-color="#37E5FF" stop-opacity="0.55"/>
+      <stop offset="100%" stop-color="#37E5FF" stop-opacity="0"/>
+    </radialGradient>
+    <linearGradient id="title" x1="0" y1="0" x2="1" y2="0">
+      <stop offset="0%" stop-color="#FFFFFF"/>
+      <stop offset="55%" stop-color="#F8CFFF"/>
+      <stop offset="100%" stop-color="#9FE9FF"/>
+    </linearGradient>
+    <linearGradient id="line" x1="0" y1="0" x2="1" y2="0">
+      <stop offset="0%" stop-color="#FF4FB8"/>
+      <stop offset="100%" stop-color="#37E5FF"/>
+    </linearGradient>
+    <filter id="soft" x="-20%" y="-20%" width="140%" height="140%">
+      <feGaussianBlur stdDeviation="1.2"/>
+    </filter>
+  </defs>
+
+  <rect width="1600" height="500" fill="url(#bg)"/>
+  <rect width="1600" height="500" fill="url(#glowA)"/>
+  <rect width="1600" height="500" fill="url(#glowB)"/>
+
+  <!-- subtle grid -->
+  <g stroke="#FFFFFF" stroke-opacity="0.04" stroke-width="1">
+    <path d="M0 100 H1600 M0 200 H1600 M0 300 H1600 M0 400 H1600"/>
+    <path d="M100 0 V500 M300 0 V500 M500 0 V500 M700 0 V500 M900 0 V500 M1100 0 V500 M1300 0 V500 M1500 0 V500"/>
+  </g>
+
+  <!-- agentic node graph (right side) -->
+  <g stroke="url(#line)" stroke-width="1.4" stroke-opacity="0.55" fill="none" filter="url(#soft)">
+    <path d="M1180 130 L1320 210 L1260 340 L1100 380 L1010 270 Z"/>
+    <path d="M1320 210 L1430 100"/>
+    <path d="M1320 210 L1480 290"/>
+    <path d="M1260 340 L1420 410"/>
+    <path d="M1010 270 L900 200"/>
+    <path d="M1100 380 L980 440"/>
+  </g>
+  <g fill="#FFFFFF">
+    <circle cx="1180" cy="130" r="7"/>
+    <circle cx="1320" cy="210" r="9"/>
+    <circle cx="1260" cy="340" r="7"/>
+    <circle cx="1100" cy="380" r="7"/>
+    <circle cx="1010" cy="270" r="6"/>
+    <circle cx="1430" cy="100" r="5"/>
+    <circle cx="1480" cy="290" r="5"/>
+    <circle cx="1420" cy="410" r="5"/>
+    <circle cx="900" cy="200" r="5"/>
+    <circle cx="980" cy="440" r="5"/>
+  </g>
+  <g fill="#37E5FF">
+    <circle cx="1320" cy="210" r="4"/>
+    <circle cx="1180" cy="130" r="3"/>
+    <circle cx="1100" cy="380" r="3"/>
+  </g>
+
+  <!-- shield glyph -->
+  <g transform="translate(95 165)">
+    <path d="M70 0 L140 28 V92 C140 138 110 170 70 188 C30 170 0 138 0 92 V28 Z"
+          fill="none" stroke="url(#line)" stroke-width="3"/>
+    <path d="M70 18 L122 38 V92 C122 128 100 154 70 168 C40 154 18 128 18 92 V38 Z"
+          fill="#FFFFFF" fill-opacity="0.04"/>
+    <path d="M44 96 L64 116 L100 70" fill="none" stroke="#37E5FF" stroke-width="5" stroke-linecap="round" stroke-linejoin="round"/>
+  </g>
+
+  <!-- title -->
+  <g font-family="Segoe UI, Inter, Helvetica, Arial, sans-serif">
+    <text x="285" y="220" font-size="64" font-weight="700" fill="url(#title)" letter-spacing="-0.5">
+      Security in the Agentic AI Space
+    </text>
+    <text x="285" y="270" font-size="24" font-weight="400" fill="#C8B8E8" letter-spacing="0.5">
+      Core Microsoft documentation, frameworks, and engineering work
+    </text>
+
+    <!-- divider -->
+    <rect x="285" y="300" width="180" height="3" fill="url(#line)" rx="1.5"/>
+
+    <!-- three pillars -->
+    <g font-size="20" font-weight="600" fill="#FFFFFF">
+      <text x="285" y="350">Security FOR AI</text>
+      <text x="555" y="350">AI FOR Security</text>
+      <text x="820" y="350">Security FROM AI</text>
+    </g>
+    <g font-size="15" fill="#9FE9FF">
+      <text x="285" y="378">Securing how we build &amp; use AI</text>
+      <text x="555" y="378">AI as a force multiplier for defenders</text>
+      <text x="820" y="378">Countering malicious use of AI</text>
+    </g>
+
+    <!-- author tag -->
+    <text x="285" y="445" font-size="14" fill="#B79FE0" letter-spacing="2" font-weight="500">
+      CURATED BY VENICIA SOLOMONS
+    </text>
+  </g>
+</svg>

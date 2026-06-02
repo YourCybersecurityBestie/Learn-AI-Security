@@ -13,8 +13,6 @@
   <a href="#-pillar-1-security-for-ai">Security FOR AI</a> ·
   <a href="#-pillar-2-ai-for-security">AI FOR Security</a> ·
   <a href="#-pillar-3-security-from-ai">Security FROM AI</a> ·
-  <a href="#-project-mdash">MDASH</a> ·
-  <a href="#-project-glasswing">Glasswing</a> ·
   <a href="#-connect">Connect</a>
 </p>
 
@@ -129,21 +127,9 @@ The starting points. If you only read four things, read these.
 - [Unified security operations, overview](https://learn.microsoft.com/en-us/unified-secops/overview-unified-security)
 - [Security Copilot in Microsoft Entra](https://learn.microsoft.com/en-us/entra/security-copilot/security-copilot-in-entra)
 
----
+### 🧪 Project MDASH
 
-## 🎯 Pillar 3: Security FROM AI
-
-> Adversaries are using AI too. Phishing at scale, malware variant generation, deepfakes, agentic recon. This pillar covers Microsoft's intelligence work, detection content, and the defensive AI Microsoft itself runs against attackers.
-
-- [Defender XDR, security for AI (covers AI-targeted attacks)](https://learn.microsoft.com/en-us/defender-xdr/security-for-ai/defender-security-for-ai)
-- [Microsoft Security Insider hub (MDDR, MTAC, threat reports)](https://www.microsoft.com/en-us/security/security-insider)
-- [Microsoft Digital Defense Report](https://www.microsoft.com/en-us/security/business/microsoft-digital-defense-report) — annual report with sections on AI-enabled threats and influence operations
-
----
-
-## 🧪 Project MDASH
-
-**MDASH** (Multi-model Agentic Scanning Harness) is Microsoft's autonomous vulnerability-discovery agent, built by the Autonomous Code Security team led by VP Taesoo Kim.
+**MDASH** (Multi-model Agentic Scanning Harness) is Microsoft's autonomous vulnerability-discovery agent, built by the Autonomous Code Security team led by VP Taesoo Kim. A flagship example of AI for defenders, applied to finding bugs before attackers do.
 
 | | |
 | :--- | :--- |
@@ -157,9 +143,7 @@ Read more:
 - [Defense at AI speed, Microsoft Security blog (12 May 2026)](https://www.microsoft.com/en-us/security/blog/2026/05/12/defense-at-ai-speed-microsofts-new-multi-model-agentic-security-system-tops-leading-industry-benchmark/)
 - [Private preview sign-up: aka.ms/AI-drivenScanningHarness](https://aka.ms/AI-drivenScanningHarness)
 
----
-
-## 🔬 Project Glasswing
+### 🔬 Project Glasswing
 
 **Glasswing** is an Anthropic-led cross-industry initiative on the safe use of agentic AI for offensive-security research, testing Claude Mythos Preview for autonomous vulnerability discovery.
 
@@ -168,6 +152,16 @@ Microsoft is a participant alongside AWS, Apple, Broadcom, Cisco, CrowdStrike, G
 - [Anthropic, Project Glasswing](https://www.anthropic.com/glasswing)
 - [MSRC blog, Strengthening secure software at global scale: how MSRC is evolving with AI (Apr 2026)](https://www.microsoft.com/en-us/msrc/blog/2026/04/strengthening-secure-software-global-scale-how-msrc-is-evolving-with-ai)
 - [Microsoft Security blog, AI-powered defense for an AI-accelerated threat landscape (22 Apr 2026)](https://www.microsoft.com/en-us/security/blog/2026/04/22/ai-powered-defense-for-an-ai-accelerated-threat-landscape/)
+
+---
+
+## 🎯 Pillar 3: Security FROM AI
+
+> Adversaries are using AI too. Phishing at scale, malware variant generation, deepfakes, agentic recon. This pillar covers Microsoft's intelligence work, detection content, and the defensive AI Microsoft itself runs against attackers.
+
+- [Defender XDR, security for AI (covers AI-targeted attacks)](https://learn.microsoft.com/en-us/defender-xdr/security-for-ai/defender-security-for-ai)
+- [Microsoft Security Insider hub (MDDR, MTAC, threat reports)](https://www.microsoft.com/en-us/security/security-insider)
+- [Microsoft Digital Defense Report](https://www.microsoft.com/en-us/security/business/microsoft-digital-defense-report). Annual report with sections on AI-enabled threats and influence operations.
 
 ---
 

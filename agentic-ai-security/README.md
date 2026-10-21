@@ -97,6 +97,7 @@ The starting points. If you only read four things, read these.
 
 > The Defender stack now covers AI workloads end-to-end. Posture (AI-SPM) before deployment, runtime threat protection across Azure OpenAI / Foundry / agentic apps, and content-layer defences via Prompt Shields.
 
+- **Technical deep dive:** [What Makes an AI Agent Risky? Microsoft Defender Detection and Protection](risky-agents-defender.md) - posture indicators, detection categories, platform coverage, identity risk, and SOC investigation.
 - [Defender for AI in Microsoft Defender XDR](https://learn.microsoft.com/en-us/defender-xdr/security-for-ai/defender-security-for-ai)
 - [Defender for Cloud, AI threat protection](https://learn.microsoft.com/en-us/azure/defender-for-cloud/ai-threat-protection)
 - [Defender for Cloud, AI Security Posture Management (AI-SPM)](https://learn.microsoft.com/en-us/azure/defender-for-cloud/ai-security-posture)

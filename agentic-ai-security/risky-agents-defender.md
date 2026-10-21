@@ -18,6 +18,8 @@
   <a href="#sources">Sources</a>
 </p>
 
+> **Disclaimer:** This is my own documentation, referencing Microsoft Learn and other official public Microsoft sources. It is not official Microsoft documentation and does not represent an official Microsoft statement. Refer to the linked Microsoft Learn pages for current product guidance.
+
 > **Documentation reviewed: 21 October 2026.** This guide brings together Microsoft Learn guidance with practical implementation and investigation examples. Preview availability, licensing, supported platforms, and enforcement requirements are noted in the relevant sections.
 
 ## Overview
